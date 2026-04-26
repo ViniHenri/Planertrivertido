@@ -262,6 +262,72 @@
         .ia-loading { display: flex; align-items: center; gap: 10px; background: #ede9fe; padding: 14px 16px; border-radius: 12px; margin-top: 10px; }
         .ia-loading p { margin: 0; font-size: 0.85em; color: #7c3aed; font-weight: 600; }
         .ia-spinner { width: 18px; height: 18px; border: 2px solid #c4b5fd; border-top-color: #7c3aed; border-radius: 50%; animation: spin 0.8s linear infinite; flex-shrink: 0; }
+        /* ===== FINANCEIRO ===== */
+        .fin-page { max-width: 600px; margin: 20px auto; padding: 0 12px; }
+        .fin-header { background: linear-gradient(135deg, #111827 0%, #1e3a5f 100%); border-radius: 20px; padding: 28px 24px 20px; margin-bottom: 16px; color: white; position: relative; overflow: hidden; }
+        .fin-header::before { content: '💰'; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-size: 4em; opacity: 0.12; }
+        .fin-header h1 { font-size: 1.8em; font-weight: 900; margin: 0 0 4px; letter-spacing: 1px; }
+        .fin-header p { margin: 0; opacity: 0.6; font-size: 0.9em; }
+        .fin-month-filter { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; background: white; border-radius: 14px; padding: 12px 16px; border: 1.5px solid #e5e7eb; }
+        .fin-month-filter label { font-size: 0.78em; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; }
+        .fin-month-filter input[type="month"] { flex: 1; border: none; outline: none; font-family: 'Inter', sans-serif; font-size: 0.95em; font-weight: 600; color: #111827; background: transparent; }
+        .fin-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+        .fin-card { border-radius: 16px; padding: 16px; color: white; position: relative; overflow: hidden; }
+        .fin-card::before { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 2.5em; opacity: 0.15; }
+        .fin-card-receita { background: linear-gradient(135deg, #16a34a, #15803d); }
+        .fin-card-receita::before { content: '📈'; }
+        .fin-card-gasto { background: linear-gradient(135deg, #dc2626, #b91c1c); }
+        .fin-card-gasto::before { content: '📉'; }
+        .fin-card-lucro { background: linear-gradient(135deg, #2563eb, #1d4ed8); grid-column: span 2; }
+        .fin-card-lucro::before { content: '🏦'; }
+        .fin-card-pendente { background: linear-gradient(135deg, #d97706, #b45309); grid-column: span 2; }
+        .fin-card-pendente::before { content: '⏳'; }
+        .fin-card .lbl { font-size: 0.7em; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; margin-bottom: 4px; }
+        .fin-card .val { font-size: 1.8em; font-weight: 900; font-family: 'Inter', sans-serif; }
+        .fin-card .sub { font-size: 0.72em; opacity: 0.7; margin-top: 2px; }
+        .fin-chart-wrap { background: white; border-radius: 16px; padding: 16px; border: 1.5px solid #e5e7eb; margin-bottom: 16px; }
+        .fin-chart-title { font-size: 0.75em; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; margin-bottom: 12px; }
+        .fin-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+        .fin-bar-label { font-size: 0.72em; font-weight: 600; color: #374151; width: 36px; flex-shrink: 0; text-align: right; }
+        .fin-bar-wrap { flex: 1; background: #f3f4f6; border-radius: 20px; height: 10px; overflow: hidden; }
+        .fin-bar-fill { height: 100%; border-radius: 20px; transition: width 0.5s ease; }
+        .fin-bar-val { font-size: 0.7em; font-weight: 700; color: #374151; width: 60px; flex-shrink: 0; text-align: right; }
+        .fin-tabs { display: flex; background: #f3f4f6; border-radius: 10px; padding: 4px; margin-bottom: 16px; gap: 4px; }
+        .fin-tab { flex: 1; padding: 9px; border-radius: 8px; border: none; background: transparent; font-weight: 700; font-size: 0.8em; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; color: #6b7280; text-align: center; }
+        .fin-tab.active { background: white; color: #111827; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+        .fin-lancamentos { background: white; border-radius: 16px; border: 1.5px solid #e5e7eb; overflow: hidden; margin-bottom: 16px; }
+        .fin-lanc-header { padding: 12px 16px; font-size: 0.75em; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; border-bottom: 1px solid #f0f0f0; background: #f9fafb; display: flex; justify-content: space-between; align-items: center; }
+        .fin-lanc-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #f9fafb; transition: background 0.15s; }
+        .fin-lanc-item:last-child { border-bottom: none; }
+        .fin-lanc-item:hover { background: #f9fafb; }
+        .fin-lanc-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1em; flex-shrink: 0; }
+        .fin-lanc-icon.receita { background: #dcfce7; }
+        .fin-lanc-icon.gasto { background: #fee2e2; }
+        .fin-lanc-info { flex: 1; }
+        .fin-lanc-desc { font-weight: 700; font-size: 0.88em; color: #111827; }
+        .fin-lanc-meta { font-size: 0.72em; color: #9ca3af; margin-top: 2px; }
+        .fin-lanc-val { font-weight: 800; font-size: 0.95em; flex-shrink: 0; }
+        .fin-lanc-val.receita { color: #16a34a; }
+        .fin-lanc-val.gasto { color: #dc2626; }
+        .fin-lanc-status { font-size: 0.62em; font-weight: 700; padding: 2px 7px; border-radius: 20px; margin-left: 6px; }
+        .status-pendente { background: #fef3c7; color: #d97706; }
+        .status-recebido { background: #dcfce7; color: #16a34a; }
+        .status-pago { background: #dbeafe; color: #2563eb; }
+        .fin-lanc-del { background: none; border: none; color: #d1d5db; cursor: pointer; font-size: 0.85em; padding: 4px; transition: color 0.2s; flex-shrink: 0; }
+        .fin-lanc-del:hover { color: #dc2626; }
+        .fin-add-form { background: white; border-radius: 16px; padding: 20px; border: 1.5px solid #e5e7eb; margin-bottom: 16px; }
+        .fin-add-form h3 { font-size: 0.75em; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; margin: 0 0 14px; }
+        .fin-tipo-toggle { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+        .fin-tipo-btn { padding: 10px; border-radius: 10px; border: 2px solid #e5e7eb; background: white; font-weight: 700; font-size: 0.82em; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; color: #6b7280; }
+        .fin-tipo-btn.active-receita { background: #dcfce7; border-color: #16a34a; color: #16a34a; }
+        .fin-tipo-btn.active-gasto { background: #fee2e2; border-color: #dc2626; color: #dc2626; }
+        .btn-add-lanc { width: 100%; padding: 14px; border: none; border-radius: 12px; font-weight: 700; font-size: 1em; cursor: pointer; margin-top: 4px; font-family: 'Inter', sans-serif; color: white; transition: all 0.2s; }
+        .btn-add-lanc.receita { background: linear-gradient(135deg, #16a34a, #15803d); }
+        .btn-add-lanc.gasto { background: linear-gradient(135deg, #dc2626, #b91c1c); }
+        .btn-add-lanc:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
+        .fin-lanc-toggle-status { font-size: 0.62em; font-weight: 700; padding: 3px 8px; border-radius: 20px; border: none; cursor: pointer; margin-left: 4px; }
+        .empty-fin { text-align: center; padding: 30px 20px; color: #9ca3af; font-size: 0.85em; }
+
     </style>
 </head>
 <body>
@@ -273,6 +339,7 @@
     <button onclick="showPage('escala')" id="btn-escala" class="nav-btn">📏 Escala</button>
     <button onclick="showPage('estoque')" id="btn-estoque" class="nav-btn">📦 Estoque</button>
     <button onclick="showPage('urgente')" id="btn-urgente" class="nav-btn nav-btn-urgente">🚨 Urgente</button>
+    <button onclick="showPage('financeiro')" id="btn-financeiro" class="nav-btn" style="background:#2563eb;">💰 Financeiro</button>
 </nav>
 <div id="page-home" class="container-app p-8 text-center mt-6">
     <h1 style="font-family:'Inter',sans-serif;" class="text-3xl font-black text-green-600 mb-2">TRIVERTIDO 💚</h1>
@@ -349,7 +416,64 @@
         <div id="form-pin" class="cadastro-form hidden"><h3>🎨 Nova Tinta / Insumo</h3><div class="form-group"><label>Nome do produto</label><input type="text" id="pin-nome" placeholder="Ex: Tinta Spray Preto Fosco"></div><div class="form-group"><label>Cor</label><div class="color-picker-row"><input type="color" id="pin-cor" value="#dc2626" oninput="updateColorPreview('pin')"><div class="color-preview" id="pin-cor-preview" style="background:#dc2626;"></div><input type="text" id="pin-cor-nome" placeholder="Nome da cor"></div></div><div class="form-group"><label>Quantidade</label><input type="text" id="pin-qty" placeholder="Ex: 2 latas, 300ml..."></div><div class="form-group"><label>Observação</label><textarea id="pin-obs" placeholder="Ex: Marca, onde comprar..." rows="2" style="resize:none;"></textarea></div><button class="btn-add-item btn-add-pin" onclick="addItem('pin')">+ Adicionar ao Estoque</button></div>
         <div id="form-mat" class="cadastro-form hidden"><h3>🔧 Novo Material</h3><div class="form-group"><label>Nome do item</label><input type="text" id="mat-nome" placeholder="Ex: Lixa 400, Primer..."></div><div class="form-group"><label>Cor (se aplicável)</label><div class="color-picker-row"><input type="color" id="mat-cor" value="#d97706" oninput="updateColorPreview('mat')"><div class="color-preview" id="mat-cor-preview" style="background:#d97706;"></div><input type="text" id="mat-cor-nome" placeholder="Cor ou N/A"></div></div><div class="form-group"><label>Quantidade</label><input type="text" id="mat-qty" placeholder="Ex: 5 folhas, 1 frasco..."></div><div class="form-group"><label>Observação</label><textarea id="mat-obs" placeholder="Ex: Onde comprar, validade..." rows="2" style="resize:none;"></textarea></div><button class="btn-add-item btn-add-mat" onclick="addItem('mat')">+ Adicionar ao Estoque</button></div>
     </div>
+</div><div id="page-financeiro" class="fin-page hidden">
+    <div class="fin-header"><h1>💰 FINANCEIRO</h1><p>Receitas, gastos e lucro do mês</p></div>
+    <div class="fin-month-filter">
+        <label>📅 Mês:</label>
+        <input type="month" id="fin-mes" onchange="renderFinanceiro()">
+    </div>
+    <div class="fin-cards">
+        <div class="fin-card fin-card-receita"><div class="lbl">Receitas</div><div class="val" id="fin-total-receita">R$ 0</div><div class="sub" id="fin-count-receita">0 lançamentos</div></div>
+        <div class="fin-card fin-card-gasto"><div class="lbl">Gastos</div><div class="val" id="fin-total-gasto">R$ 0</div><div class="sub" id="fin-count-gasto">0 lançamentos</div></div>
+        <div class="fin-card fin-card-lucro"><div class="lbl">Lucro Líquido (recebido - pago)</div><div class="val" id="fin-lucro">R$ 0</div><div class="sub" id="fin-lucro-sub">receitas recebidas menos gastos pagos</div></div>
+        <div class="fin-card fin-card-pendente"><div class="lbl">A Receber (pendente)</div><div class="val" id="fin-pendente">R$ 0</div><div class="sub" id="fin-pendente-sub">vendas ainda não recebidas</div></div>
+    </div>
+    <div class="fin-chart-wrap">
+        <div class="fin-chart-title">📊 Últimos 6 meses</div>
+        <div id="fin-chart"></div>
+    </div>
+    <div class="fin-tabs">
+        <button class="fin-tab active" id="ftab-todos" onclick="switchFinTab('todos')">Todos</button>
+        <button class="fin-tab" id="ftab-receitas" onclick="switchFinTab('receitas')">📈 Receitas</button>
+        <button class="fin-tab" id="ftab-gastos" onclick="switchFinTab('gastos')">📉 Gastos</button>
+    </div>
+    <div class="fin-lancamentos">
+        <div class="fin-lanc-header"><span id="fin-lanc-title">Lançamentos</span><span id="fin-lanc-count" style="background:#f3f4f6;padding:2px 8px;border-radius:20px;font-size:0.9em;">0</span></div>
+        <div id="fin-lista"></div>
+    </div>
+    <div class="fin-add-form">
+        <h3>+ Novo Lançamento</h3>
+        <div class="fin-tipo-toggle">
+            <button class="fin-tipo-btn active-receita" id="fbt-receita" onclick="setFinTipo('receita')">📈 Receita</button>
+            <button class="fin-tipo-btn" id="fbt-gasto" onclick="setFinTipo('gasto')">📉 Gasto</button>
+        </div>
+        <div class="form-group"><label>Descrição</label><input type="text" id="fin-desc" placeholder="Ex: Venda Boneco, Filamento PLA..."></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <div class="form-group"><label>Valor (R$)</label><input type="number" id="fin-valor" placeholder="0,00" step="0.01"></div>
+            <div class="form-group"><label>Categoria</label>
+                <select id="fin-categoria">
+                    <option value="venda">🛍 Venda</option>
+                    <option value="filamento">🧵 Filamento</option>
+                    <option value="resina">🧪 Resina</option>
+                    <option value="energia">⚡ Energia</option>
+                    <option value="embalagem">📦 Embalagem</option>
+                    <option value="equipamento">🔧 Equipamento</option>
+                    <option value="outros">📌 Outros</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group"><label>Status</label>
+            <select id="fin-status">
+                <option value="pendente">⏳ Pendente</option>
+                <option value="recebido">✅ Recebido</option>
+                <option value="pago">💸 Pago</option>
+            </select>
+        </div>
+        <button class="btn-add-lanc receita" id="btn-add-lanc" onclick="addLancamento()">+ Adicionar Receita</button>
+    </div>
 </div>
+
+
 <div id="page-urgente" class="urgente-page hidden">
     <div class="urgente-header"><h1>🚨 IMPRESSÃO URGENTE</h1><p>Calcule onde cortar o modelo para retomar a impressão</p></div>
     <div class="urgente-card"><h3>📐 Dados da peça</h3><div class="input-row"><div class="input-group"><label>Altura total da peça</label><input type="number" id="urg-altura-total" placeholder="Ex: 120"><div class="input-hint">Altura completa do modelo</div></div><div class="input-group"><label>Unidade</label><select id="urg-unidade"><option value="mm">mm</option><option value="cm">cm</option></select></div></div><div class="input-group"><label>Peso total estimado (g)</label><input type="number" id="urg-peso-total" placeholder="Ex: 85"><div class="input-hint">Visto no Bambu Studio antes de imprimir</div></div></div>
@@ -364,7 +488,8 @@
     </div>
 </div>
 <div id="modal-new-task" class="modal-overlay hidden"><div class="modal-sheet"><div class="modal-handle"></div><div class="modal-header"><div><div class="modal-title">Nova Tarefa</div><div class="modal-client">Preencha os dados do pedido</div></div><button class="modal-close" onclick="closeModal('modal-new-task')">✕</button></div><div class="new-task-modal"><div style="margin-top:16px;"><div class="modal-section-title">📋 Dados do pedido</div><div class="form-group"><label>Nome do projeto / peça</label><input type="text" id="new-task-title" placeholder="Ex: Boneco Dragon Ball"></div><div class="form-group"><label>Cliente</label><input type="text" id="new-task-client" placeholder="Ex: João Silva"></div><div class="form-group"><label>Coluna inicial</label><select id="new-task-status"><option value="cotacao">Em Cotação</option><option value="afazer">A Fazer</option><option value="fazendo">Fazendo</option><option value="feito">Feito</option></select></div><button class="btn-add-item btn-add-fil" onclick="createTask()" style="margin-top:8px;">✅ Criar Tarefa</button></div></div></div></div>
-<div id="modal-task-detail" class="modal-overlay hidden"><div class="modal-sheet"><div class="modal-handle"></div><div class="modal-header"><div><div class="modal-title" id="detail-title">—</div><div class="modal-client" id="detail-client">—</div></div><button class="modal-close" onclick="closeModal('modal-task-detail')">✕</button></div><div class="modal-body"><div class="modal-section-title">📍 Status</div><div class="status-mover" id="status-mover-btns"><button class="status-btn" data-status="cotacao" onclick="moveTaskTo('cotacao')">🟣 Cotação</button><button class="status-btn" data-status="afazer" onclick="moveTaskTo('afazer')">🟡 A Fazer</button><button class="status-btn" data-status="fazendo" onclick="moveTaskTo('fazendo')">🔵 Fazendo</button><button class="status-btn" data-status="feito" onclick="moveTaskTo('feito')">🟢 Feito</button></div><div class="modal-section-title" style="margin-top:20px;">🤖 Checklist IA</div><div id="upload-area-wrap"><div class="upload-area" onclick="document.getElementById('img-upload-input').click()"><div class="emoji">📷</div><p>Clique para enviar uma <strong>foto do modelo</strong><br>A IA vai sugerir as etapas de impressão</p></div><input type="file" id="img-upload-input" accept="image/*" style="display:none;" onchange="onImageSelected(event)"></div><div id="img-preview-wrap" class="hidden"><img id="img-preview" class="upload-preview" src="" alt="preview"><button onclick="clearImage()" style="font-size:0.8em;color:#6b7280;background:none;border:none;cursor:pointer;padding:0;margin-bottom:6px;">🗑 Remover imagem</button></div><button class="btn-ia" id="btn-gerar-ia" onclick="gerarChecklistIA()">✨ Gerar Checklist com IA</button><div class="ia-loading hidden" id="ia-loading"><div class="ia-spinner"></div><p>IA analisando o modelo e gerando etapas...</p></div><div class="modal-section-title" style="margin-top:20px;">🧩 Peças do Projeto</div><div id="checklist-container"></div><div class="add-peca-row"><input type="text" id="new-peca-input" placeholder="Nome da peça (ex: Braço Direito)"><button onclick="addPecaManual()">+ Peça</button></div><div id="progress-section" style="margin-top:16px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-size:0.8em;font-weight:700;color:#374151;">Progresso Geral</span><span id="progress-label" style="font-size:0.8em;font-weight:800;color:#16a34a;">0 / 0</span></div><div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-bar" style="width:0%"></div></div></div><button onclick="deleteCurrentTask()" style="margin-top:28px;width:100%;padding:12px;background:#fee2e2;color:#dc2626;border:none;border-radius:12px;font-weight:700;font-size:0.9em;cursor:pointer;font-family:'Inter',sans-serif;">🗑 Excluir Tarefa</button></div></div></div><script>
+<div id="modal-task-detail" class="modal-overlay hidden"><div class="modal-sheet"><div class="modal-handle"></div><div class="modal-header"><div><div class="modal-title" id="detail-title">—</div><div class="modal-client" id="detail-client">—</div></div><button class="modal-close" onclick="closeModal('modal-task-detail')">✕</button></div><div class="modal-body"><div class="modal-section-title">📍 Status</div><div class="status-mover" id="status-mover-btns"><button class="status-btn" data-status="cotacao" onclick="moveTaskTo('cotacao')">🟣 Cotação</button><button class="status-btn" data-status="afazer" onclick="moveTaskTo('afazer')">🟡 A Fazer</button><button class="status-btn" data-status="fazendo" onclick="moveTaskTo('fazendo')">🔵 Fazendo</button><button class="status-btn" data-status="feito" onclick="moveTaskTo('feito')">🟢 Feito</button></div><div class="modal-section-title" style="margin-top:20px;">🤖 Checklist IA</div><div id="upload-area-wrap"><div class="upload-area" onclick="document.getElementById('img-upload-input').click()"><div class="emoji">📷</div><p>Clique para enviar uma <strong>foto do modelo</strong><br>A IA vai sugerir as etapas de impressão</p></div><input type="file" id="img-upload-input" accept="image/*" style="display:none;" onchange="onImageSelected(event)"></div><div id="img-preview-wrap" class="hidden"><img id="img-preview" class="upload-preview" src="" alt="preview"><button onclick="clearImage()" style="font-size:0.8em;color:#6b7280;background:none;border:none;cursor:pointer;padding:0;margin-bottom:6px;">🗑 Remover imagem</button></div><button class="btn-ia" id="btn-gerar-ia" onclick="gerarChecklistIA()">✨ Gerar Checklist com IA</button><div class="ia-loading hidden" id="ia-loading"><div class="ia-spinner"></div><p>IA analisando o modelo e gerando etapas...</p></div><div class="modal-section-title" style="margin-top:20px;">🧩 Peças do Projeto</div><div id="checklist-container"></div><div class="add-peca-row"><input type="text" id="new-peca-input" placeholder="Nome da peça (ex: Braço Direito)"><button onclick="addPecaManual()">+ Peça</button></div><div id="progress-section" style="margin-top:16px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-size:0.8em;font-weight:700;color:#374151;">Progresso Geral</span><span id="progress-label" style="font-size:0.8em;font-weight:800;color:#16a34a;">0 / 0</span></div><div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-bar" style="width:0%"></div></div></div><button onclick="deleteCurrentTask()" style="margin-top:28px;width:100%;padding:12px;background:#fee2e2;color:#dc2626;border:none;border-radius:12px;font-weight:700;font-size:0.9em;cursor:pointer;font-family:'Inter',sans-serif;">🗑 Excluir Tarefa</button></div></div></div>
+<script>
 const SUPABASE_URL = 'https://kzgfvpmuxptgwvxszdvt.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt6Z2Z2cG11eHB0Z3d2eHN6ZHZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwNjE0ODMsImV4cCI6MjA5MjYzNzQ4M30.8KQeJWooaM11Dmylp7im8JWFC6Gde46Ou8a1l2z6G88';
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -378,7 +503,7 @@ function hideLoading() { document.getElementById('global-loading').style.display
 
 async function init() {
     showLoading('Conectando ao banco de dados...');
-    try { await loadTasks(); await loadStock(); hideLoading(); }
+    try { await loadTasks(); await loadStock(); await loadFinanceiro(); hideLoading(); }
     catch(e) { hideLoading(); showToast('Erro ao conectar. Verifique a conexão.', 'error'); }
 }
 
@@ -441,11 +566,12 @@ async function addStockItem(category, itemData) { const { data, error } = await 
 async function deleteStockItem(category, id) { const { error } = await sb.from('stock').delete().eq('id', id); if (error) throw error; stockCache[category] = stockCache[category].filter(i => i.id !== id); updateSummaryCounts(); }
 
 function showPage(pageId) {
-    ['home','tarefas','orcamento','escala','estoque','urgente'].forEach(p => { document.getElementById('page-' + p).classList.add('hidden'); document.getElementById('btn-' + p).classList.remove('active'); });
+    ['home','tarefas','orcamento','escala','estoque','urgente','financeiro'].forEach(p => { document.getElementById('page-' + p).classList.add('hidden'); document.getElementById('btn-' + p).classList.remove('active'); });
     document.getElementById('page-' + pageId).classList.remove('hidden');
     document.getElementById('btn-' + pageId).classList.add('active');
     if (pageId === 'estoque') renderEstoque();
     if (pageId === 'tarefas') renderKanban();
+    if (pageId === 'financeiro') renderFinanceiro();
 }
 
 function addInputPeca() { const div = document.createElement('div'); div.className = 'flex gap-2 mb-2'; div.innerHTML = `<input type="number" oninput="calcEscala()" placeholder="Peça mm" class="peca-input flex-1 p-3 border rounded-lg"><button onclick="this.parentElement.remove(); calcEscala()" class="bg-red-100 text-red-600 px-4 rounded-lg font-bold">✕</button>`; document.getElementById('lista-pecas').appendChild(div); }
@@ -506,7 +632,8 @@ async function toggleFinalStep(stepId, done) { try { await toggleFinalStepInDB(s
 async function deletePeca(pecaId) { try { await deletePecaFromDB(pecaId, currentTaskId); const task = tasksCache.find(t => t.id === currentTaskId); if (task) { renderChecklist(task); renderKanban(); } } catch(e) { showToast('Erro ao remover peça', 'error'); } }
 async function addPecaManual() { const input = document.getElementById('new-peca-input'), nome = input.value.trim(); if (!nome) return; try { await addPecaToDB(currentTaskId, nome); const task = tasksCache.find(t => t.id === currentTaskId); if (task) { renderChecklist(task); renderKanban(); } input.value = ''; } catch(e) { showToast('Erro ao adicionar peça', 'error'); } }
 function updateProgress(task) { const { total, done } = countSteps(task); document.getElementById('progress-label').innerText = `${done} / ${total}`; document.getElementById('progress-bar').style.width = total > 0 ? `${(done/total)*100}%` : '0%'; }
-async function moveTaskTo(status) { try { await updateTaskStatus(currentTaskId, status); document.querySelectorAll('.status-btn').forEach(btn => { btn.className = 'status-btn'; if (btn.dataset.status === status) btn.classList.add('active-' + status); }); renderKanban(); showToast('Status atualizado!', 'success'); } catch(e) { showToast('Erro ao atualizar status', 'error'); } }
+async function moveTaskTo(status) { try { await updateTaskStatus(currentTaskId, status);
+        if (status === 'afazer') { const task = tasksCache.find(t => t.id === currentTaskId); if (task && !finCache.find(f => f.task_id === currentTaskId)) { await registrarVendaFinanceiro(task.title, task.client, currentTaskId); } } document.querySelectorAll('.status-btn').forEach(btn => { btn.className = 'status-btn'; if (btn.dataset.status === status) btn.classList.add('active-' + status); }); renderKanban(); showToast('Status atualizado!', 'success'); } catch(e) { showToast('Erro ao atualizar status', 'error'); } }
 async function deleteCurrentTask() { if (!confirm('Excluir esta tarefa permanentemente?')) return; try { await deleteTaskFromDB(currentTaskId); closeModal('modal-task-detail'); renderKanban(); showToast('Tarefa excluída', 'success'); } catch(e) { showToast('Erro ao excluir', 'error'); } }
 function onImageSelected(event) { const file = event.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = async (e) => { const base64 = e.target.result; currentImageBase64 = base64; document.getElementById('upload-area-wrap').classList.add('hidden'); document.getElementById('img-preview-wrap').classList.remove('hidden'); document.getElementById('img-preview').src = base64; try { await updateTaskImage(currentTaskId, base64); } catch(e) {} }; reader.readAsDataURL(file); }
 function clearImage() { currentImageBase64 = null; document.getElementById('img-upload-input').value = ''; document.getElementById('upload-area-wrap').classList.remove('hidden'); document.getElementById('img-preview-wrap').classList.add('hidden'); document.getElementById('img-preview').src = ''; updateTaskImage(currentTaskId, null).catch(() => {}); }
@@ -514,6 +641,195 @@ async function gerarChecklistIA() { const task = tasksCache.find(t => t.id === c
 function closeModal(id) { document.getElementById(id).classList.add('hidden'); if (id === 'modal-task-detail') currentTaskId = null; }
 document.addEventListener('click', (e) => { ['modal-new-task', 'modal-task-detail'].forEach(id => { const el = document.getElementById(id); if (e.target === el) closeModal(id); }); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Enter' && document.activeElement.id === 'new-peca-input') addPecaManual(); });
+// =================== FINANCEIRO ===================
+let finCache = [];
+let finTipo = 'receita';
+let finTabAtual = 'todos';
+
+async function loadFinanceiro() {
+    const { data, error } = await sb.from('financeiro').select('*').order('created_at', { ascending: false });
+    if (error) throw error;
+    finCache = data || [];
+}
+
+async function addLancamento() {
+    const desc = document.getElementById('fin-desc').value.trim();
+    const valor = parseFloat(document.getElementById('fin-valor').value);
+    const categoria = document.getElementById('fin-categoria').value;
+    const status = document.getElementById('fin-status').value;
+    if (!desc) { showToast('Informe a descrição!', 'error'); return; }
+    if (!valor || valor <= 0) { showToast('Informe um valor válido!', 'error'); return; }
+    try {
+        showLoading('Salvando...');
+        const { data, error } = await sb.from('financeiro').insert({ tipo: finTipo, descricao: desc, valor, categoria, status }).select().single();
+        if (error) throw error;
+        finCache.unshift(data);
+        hideLoading();
+        document.getElementById('fin-desc').value = '';
+        document.getElementById('fin-valor').value = '';
+        showToast('✅ Lançamento salvo!', 'success');
+        renderFinanceiro();
+    } catch(e) { hideLoading(); showToast('Erro ao salvar', 'error'); }
+}
+
+async function deleteLancamento(id) {
+    try {
+        await sb.from('financeiro').delete().eq('id', id);
+        finCache = finCache.filter(i => i.id !== id);
+        renderFinanceiro();
+        showToast('Removido', 'success');
+    } catch(e) { showToast('Erro ao remover', 'error'); }
+}
+
+async function toggleStatusLanc(id, statusAtual) {
+    const ciclo = { pendente: 'recebido', recebido: 'pago', pago: 'pendente' };
+    const novoStatus = ciclo[statusAtual] || 'pendente';
+    try {
+        await sb.from('financeiro').update({ status: novoStatus }).eq('id', id);
+        const item = finCache.find(i => i.id === id);
+        if (item) item.status = novoStatus;
+        renderFinanceiro();
+    } catch(e) { showToast('Erro ao atualizar status', 'error'); }
+}
+
+async function registrarVendaFinanceiro(taskTitle, taskClient, taskId) {
+    try {
+        const desc = `${taskTitle} — ${taskClient}`;
+        const { data } = await sb.from('financeiro').insert({ tipo: 'receita', descricao: desc, valor: 0, categoria: 'venda', status: 'pendente', task_id: taskId }).select().single();
+        if (data) finCache.unshift(data);
+    } catch(e) { /* silencioso */ }
+}
+
+function setFinTipo(tipo) {
+    finTipo = tipo;
+    document.getElementById('fbt-receita').className = 'fin-tipo-btn' + (tipo === 'receita' ? ' active-receita' : '');
+    document.getElementById('fbt-gasto').className = 'fin-tipo-btn' + (tipo === 'gasto' ? ' active-gasto' : '');
+    const btn = document.getElementById('btn-add-lanc');
+    btn.className = `btn-add-lanc ${tipo}`;
+    btn.textContent = tipo === 'receita' ? '+ Adicionar Receita' : '+ Adicionar Gasto';
+    const cat = document.getElementById('fin-categoria');
+    if (tipo === 'receita') { cat.value = 'venda'; document.getElementById('fin-status').value = 'pendente'; }
+    else { cat.value = 'filamento'; document.getElementById('fin-status').value = 'pago'; }
+}
+
+function switchFinTab(tab) {
+    finTabAtual = tab;
+    ['todos','receitas','gastos'].forEach(t => document.getElementById('ftab-' + t).classList.toggle('active', t === tab));
+    renderFinanceiro();
+}
+
+function getFinMes() {
+    const inp = document.getElementById('fin-mes');
+    if (!inp.value) {
+        const now = new Date();
+        inp.value = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}`;
+    }
+    return inp.value;
+}
+
+function renderFinanceiro() {
+    const mes = getFinMes();
+    const [ano, m] = mes.split('-');
+
+    const doMes = finCache.filter(i => {
+        const d = new Date(i.created_at);
+        return d.getFullYear() === parseInt(ano) && (d.getMonth()+1) === parseInt(m);
+    });
+
+    const receitas = doMes.filter(i => i.tipo === 'receita');
+    const gastos = doMes.filter(i => i.tipo === 'gasto');
+    const totalReceita = receitas.reduce((s, i) => s + (i.valor || 0), 0);
+    const totalGasto = gastos.reduce((s, i) => s + (i.valor || 0), 0);
+    const recebido = receitas.filter(i => i.status === 'recebido').reduce((s, i) => s + (i.valor || 0), 0);
+    const pago = gastos.filter(i => i.status === 'pago').reduce((s, i) => s + (i.valor || 0), 0);
+    const pendente = receitas.filter(i => i.status === 'pendente').reduce((s, i) => s + (i.valor || 0), 0);
+    const lucro = recebido - pago;
+
+    const fmt = v => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    document.getElementById('fin-total-receita').textContent = fmt(totalReceita);
+    document.getElementById('fin-count-receita').textContent = `${receitas.length} lançamento${receitas.length !== 1 ? 's' : ''}`;
+    document.getElementById('fin-total-gasto').textContent = fmt(totalGasto);
+    document.getElementById('fin-count-gasto').textContent = `${gastos.length} lançamento${gastos.length !== 1 ? 's' : ''}`;
+    document.getElementById('fin-lucro').textContent = fmt(lucro);
+    document.getElementById('fin-lucro-sub').textContent = lucro >= 0 ? '✅ Positivo' : '⚠️ Negativo';
+    document.getElementById('fin-pendente').textContent = fmt(pendente);
+    document.getElementById('fin-pendente-sub').textContent = `${receitas.filter(i => i.status === 'pendente').length} venda${receitas.filter(i => i.status === 'pendente').length !== 1 ? 's' : ''} aguardando`;
+
+    renderFinChart(mes);
+
+    let lista = doMes;
+    if (finTabAtual === 'receitas') lista = receitas;
+    if (finTabAtual === 'gastos') lista = gastos;
+
+    const titles = { todos: 'Todos os lançamentos', receitas: 'Receitas', gastos: 'Gastos' };
+    document.getElementById('fin-lanc-title').textContent = titles[finTabAtual];
+    document.getElementById('fin-lanc-count').textContent = lista.length;
+
+    const catEmoji = { venda:'🛍', filamento:'🧵', resina:'🧪', energia:'⚡', embalagem:'📦', equipamento:'🔧', outros:'📌' };
+    const statusLabel = { pendente: 'pendente', recebido: 'recebido', pago: 'pago' };
+
+    const container = document.getElementById('fin-lista');
+    if (lista.length === 0) {
+        container.innerHTML = '<div class="empty-fin">Nenhum lançamento neste mês.<br>Adicione um abaixo! 👇</div>';
+        return;
+    }
+
+    container.innerHTML = lista.map(item => {
+        const emoji = catEmoji[item.categoria] || '📌';
+        const d = new Date(item.created_at);
+        const dataStr = `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}`;
+        return `<div class="fin-lanc-item">
+            <div class="fin-lanc-icon ${item.tipo}">${emoji}</div>
+            <div class="fin-lanc-info">
+                <div class="fin-lanc-desc">${item.descricao}</div>
+                <div class="fin-lanc-meta">${dataStr} · ${item.categoria}
+                    <button class="fin-lanc-toggle-status status-${item.status}" onclick="toggleStatusLanc(${item.id}, '${item.status}')">${statusLabel[item.status]}</button>
+                </div>
+            </div>
+            <div class="fin-lanc-val ${item.tipo}">${item.tipo === 'receita' ? '+' : '-'}${(item.valor||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}</div>
+            <button class="fin-lanc-del" onclick="deleteLancamento(${item.id})">✕</button>
+        </div>`;
+    }).join('');
+}
+
+function renderFinChart(mesAtual) {
+    const container = document.getElementById('fin-chart');
+    const meses = [];
+    const [anoBase, mesBase] = mesAtual.split('-').map(Number);
+    for (let i = 5; i >= 0; i--) {
+        let m = mesBase - i, a = anoBase;
+        if (m <= 0) { m += 12; a -= 1; }
+        meses.push({ ano: a, mes: m, label: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'][m-1] });
+    }
+
+    const dados = meses.map(({ ano, mes, label }) => {
+        const items = finCache.filter(i => { const d = new Date(i.created_at); return d.getFullYear() === ano && (d.getMonth()+1) === mes; });
+        const rec = items.filter(i => i.tipo === 'receita').reduce((s, i) => s + (i.valor||0), 0);
+        const gas = items.filter(i => i.tipo === 'gasto').reduce((s, i) => s + (i.valor||0), 0);
+        return { label, rec, gas };
+    });
+
+    const maxVal = Math.max(...dados.flatMap(d => [d.rec, d.gas]), 1);
+    const fmt = v => v >= 1000 ? `R$${(v/1000).toFixed(1)}k` : `R$${v.toFixed(0)}`;
+
+    container.innerHTML = dados.map(d => `
+        <div class="fin-bar-row">
+            <div class="fin-bar-label">${d.label}</div>
+            <div style="flex:1;display:flex;flex-direction:column;gap:3px;">
+                <div class="fin-bar-wrap"><div class="fin-bar-fill" style="width:${(d.rec/maxVal)*100}%;background:linear-gradient(90deg,#16a34a,#22c55e);"></div></div>
+                <div class="fin-bar-wrap"><div class="fin-bar-fill" style="width:${(d.gas/maxVal)*100}%;background:linear-gradient(90deg,#dc2626,#f87171);"></div></div>
+            </div>
+            <div style="width:70px;text-align:right;font-size:0.68em;font-weight:700;color:#374151;line-height:1.6;">
+                <div style="color:#16a34a">${fmt(d.rec)}</div>
+                <div style="color:#dc2626">${fmt(d.gas)}</div>
+            </div>
+        </div>`).join('') + `
+        <div style="display:flex;gap:16px;margin-top:10px;justify-content:center;">
+            <span style="font-size:0.7em;font-weight:700;color:#16a34a;display:flex;align-items:center;gap:4px;"><span style="width:12px;height:6px;background:#16a34a;border-radius:3px;display:inline-block;"></span>Receitas</span>
+            <span style="font-size:0.7em;font-weight:700;color:#dc2626;display:flex;align-items:center;gap:4px;"><span style="width:12px;height:6px;background:#dc2626;border-radius:3px;display:inline-block;"></span>Gastos</span>
+        </div>`;
+}
+
 init();
 </script>
 </body>
