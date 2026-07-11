@@ -194,6 +194,12 @@
         .kanban-card-footer { display: flex; align-items: center; justify-content: space-between; }
         .kanban-card-progress { font-size: 0.7em; font-weight: 600; color: #9ca3af; }
         .kanban-card-progress.has-tasks { color: #16a34a; }
+        .kanban-payment-line { display: flex; flex-wrap: wrap; gap: 5px; margin: 8px 0 2px; }
+        .payment-chip { display: inline-flex; align-items: center; gap: 3px; padding: 3px 7px; border-radius: 999px; background: #eef2ff; color: #4338ca; font-size: 0.64em; font-weight: 800; }
+        .payment-chip.money { background: #dcfce7; color: #15803d; }
+        .payment-chip.due { background: #fef3c7; color: #b45309; }
+        .payment-chip.overdue { background: #fee2e2; color: #dc2626; }
+        .payment-chip.paid { background: #dbeafe; color: #1d4ed8; }
         .kanban-card-del { background: #fee2e2; border: none; border-radius: 6px; width: 22px; height: 22px; cursor: pointer; font-size: 0.7em; color: #dc2626; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.2s; flex-shrink: 0; }
         .kanban-card:hover .kanban-card-del { opacity: 1; }
         .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 1000; display: flex; align-items: flex-end; justify-content: center; animation: fadeOverlay 0.25s ease; }
@@ -255,6 +261,10 @@
         .status-btn.active-afazer { background: #fef3c7; border-color: #d97706; color: #d97706; }
         .status-btn.active-fazendo { background: #dbeafe; border-color: #2563eb; color: #2563eb; }
         .status-btn.active-feito { background: #dcfce7; border-color: #16a34a; color: #16a34a; }
+        .task-payment-panel { background: #f9fafb; border: 1.5px solid #e5e7eb; border-radius: 14px; padding: 14px; margin-top: 10px; }
+        .payment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .payment-grid .form-group { margin-bottom: 0; }
+        .payment-save-btn { width: 100%; margin-top: 12px; padding: 11px; border: none; border-radius: 10px; background: linear-gradient(135deg,#2563eb,#1d4ed8); color: white; font-weight: 800; cursor: pointer; font-family: 'Inter', sans-serif; }
         .new-task-modal { padding: 0 20px 20px; }
         .new-task-modal h3 { font-size: 0.75em; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: #6b7280; margin: 0 0 14px; }
         .progress-bar-wrap { background: #f3f4f6; border-radius: 20px; height: 6px; overflow: hidden; margin-top: 6px; }
@@ -271,6 +281,9 @@
         .fin-month-filter { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; background: white; border-radius: 14px; padding: 12px 16px; border: 1.5px solid #e5e7eb; }
         .fin-month-filter label { font-size: 0.78em; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; }
         .fin-month-filter input[type="month"] { flex: 1; border: none; outline: none; font-family: 'Inter', sans-serif; font-size: 0.95em; font-weight: 600; color: #111827; background: transparent; }
+        .fin-subtabs { display: flex; background: white; border: 1.5px solid #e5e7eb; border-radius: 14px; padding: 5px; margin-bottom: 16px; gap: 5px; }
+        .fin-subtab { flex: 1; border: none; border-radius: 10px; padding: 10px; background: transparent; font-size: 0.82em; font-weight: 800; color: #6b7280; cursor: pointer; font-family: 'Inter', sans-serif; }
+        .fin-subtab.active { background: #111827; color: white; }
         .fin-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
         .fin-card { border-radius: 16px; padding: 16px; color: white; position: relative; overflow: hidden; }
         .fin-card::before { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 2.5em; opacity: 0.15; }
@@ -327,6 +340,25 @@
         .btn-add-lanc:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
         .fin-lanc-toggle-status { font-size: 0.62em; font-weight: 700; padding: 3px 8px; border-radius: 20px; border: none; cursor: pointer; margin-left: 4px; }
         .empty-fin { text-align: center; padding: 30px 20px; color: #9ca3af; font-size: 0.85em; }
+        .bills-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+        .bill-mini-card { background: white; border: 1.5px solid #e5e7eb; border-radius: 14px; padding: 14px; }
+        .bill-mini-card .lbl { font-size: 0.68em; text-transform: uppercase; letter-spacing: .8px; color: #6b7280; font-weight: 800; }
+        .bill-mini-card .val { margin-top: 4px; font-size: 1.25em; font-weight: 900; color: #111827; }
+        .bill-card { background: white; border: 1.5px solid #e5e7eb; border-radius: 16px; padding: 14px; margin-bottom: 10px; }
+        .bill-card.overdue { border-color: #fecaca; background: #fff7f7; }
+        .bill-card-top { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
+        .bill-title { font-size: 0.9em; font-weight: 900; color: #111827; }
+        .bill-meta { margin-top: 3px; font-size: 0.72em; color: #6b7280; }
+        .bill-value { font-weight: 900; color: #dc2626; white-space: nowrap; }
+        .bill-actions { display: flex; gap: 8px; margin-top: 10px; }
+        .bill-actions button { flex: 1; border: none; border-radius: 10px; padding: 9px; font-size: 0.76em; font-weight: 800; cursor: pointer; font-family: 'Inter', sans-serif; }
+        .bill-pay-btn { background: #dcfce7; color: #15803d; }
+        .bill-open-btn { background: #eef2ff; color: #4338ca; }
+        .bill-value.receber { color: #16a34a; }
+        .fin-projeto-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #f9fafb; }
+        .fin-projeto-item:last-child { border-bottom: none; }
+        .fin-projeto-bar-wrap { flex: 1; background: #f3f4f6; border-radius: 20px; height: 8px; overflow: hidden; margin-top: 6px; }
+        .fin-projeto-bar-fill { height: 100%; background: linear-gradient(90deg, #16a34a, #22c55e); border-radius: 20px; transition: width 0.4s ease; }
 
     </style>
 </head>
@@ -422,6 +454,12 @@
         <label>📅 Mês:</label>
         <input type="month" id="fin-mes" onchange="renderFinanceiro()">
     </div>
+    <div class="fin-subtabs">
+        <button class="fin-subtab active" id="fin-subtab-relatorio" onclick="switchFinSubpage('relatorio')">Relatório</button>
+        <button class="fin-subtab" id="fin-subtab-receber" onclick="switchFinSubpage('receber')">A Receber</button>
+        <button class="fin-subtab" id="fin-subtab-contas" onclick="switchFinSubpage('contas')">Contas a pagar</button>
+    </div>
+    <div id="fin-report-view">
     <div class="fin-cards">
         <div class="fin-card fin-card-receita"><div class="lbl">Receitas</div><div class="val" id="fin-total-receita">R$ 0</div><div class="sub" id="fin-count-receita">0 lançamentos</div></div>
         <div class="fin-card fin-card-gasto"><div class="lbl">Gastos</div><div class="val" id="fin-total-gasto">R$ 0</div><div class="sub" id="fin-count-gasto">0 lançamentos</div></div>
@@ -431,6 +469,10 @@
     <div class="fin-chart-wrap">
         <div class="fin-chart-title">📊 Últimos 6 meses</div>
         <div id="fin-chart"></div>
+    </div>
+    <div class="fin-chart-wrap">
+        <div class="fin-chart-title">📁 Por Projeto</div>
+        <div id="fin-projetos-list"></div>
     </div>
     <div class="fin-tabs">
         <button class="fin-tab active" id="ftab-todos" onclick="switchFinTab('todos')">Todos</button>
@@ -471,6 +513,39 @@
         </div>
         <button class="btn-add-lanc receita" id="btn-add-lanc" onclick="addLancamento()">+ Adicionar Receita</button>
     </div>
+    </div>
+    <div id="fin-bills-view" class="hidden">
+        <div class="bills-summary">
+            <div class="bill-mini-card"><div class="lbl">Em aberto</div><div class="val" id="bills-open-total">R$ 0</div></div>
+            <div class="bill-mini-card"><div class="lbl">Devendo</div><div class="val" id="bills-overdue-total">R$ 0</div></div>
+        </div>
+        <div class="fin-add-form">
+            <h3>+ Nova conta a pagar</h3>
+            <div class="form-group"><label>Descrição</label><input type="text" id="bill-desc" placeholder="Ex: Filamento, energia, fornecedor..."></div>
+            <div class="payment-grid">
+                <div class="form-group"><label>Valor (R$)</label><input type="number" id="bill-valor" placeholder="0,00" step="0.01"></div>
+                <div class="form-group"><label>Data de pagamento</label><input type="date" id="bill-date"></div>
+                <div class="form-group"><label>Forma de pagamento</label><select id="bill-method"><option value="Pix">Pix</option><option value="Cartão">Cartão</option><option value="Dinheiro">Dinheiro</option><option value="Boleto">Boleto</option><option value="Transferência">Transferência</option></select></div>
+                <div class="form-group"><label>Parcelas</label><input type="number" id="bill-installments" value="1" min="1"></div>
+            </div>
+            <button class="btn-add-lanc gasto" onclick="addContaPagar()">+ Adicionar Conta</button>
+        </div>
+        <div class="fin-lancamentos">
+            <div class="fin-lanc-header"><span>Contas do mês</span><span id="bills-count" style="background:#f3f4f6;padding:2px 8px;border-radius:20px;font-size:0.9em;">0</span></div>
+            <div id="bills-list"></div>
+        </div>
+    </div>
+    <div id="fin-receivables-view" class="hidden">
+        <div class="bills-summary">
+            <div class="bill-mini-card"><div class="lbl">A receber</div><div class="val" id="receivables-open-total">R$ 0</div></div>
+            <div class="bill-mini-card"><div class="lbl">Atrasado</div><div class="val" id="receivables-overdue-total">R$ 0</div></div>
+        </div>
+        <div class="fin-lancamentos">
+            <div class="fin-lanc-header"><span>Vendas a receber do mês</span><span id="receivables-count" style="background:#f3f4f6;padding:2px 8px;border-radius:20px;font-size:0.9em;">0</span></div>
+            <div id="receivables-list"></div>
+        </div>
+        <div class="empty-fin" style="margin-top:-4px;">💡 As vendas aparecem aqui automaticamente quando um pedido sai de "Em Cotação" na aba Tarefas. Para dar baixa, use o botão "Receber parcela" aqui ou preencha o pagamento direto no card do pedido.</div>
+    </div>
 </div>
 
 
@@ -488,7 +563,7 @@
     </div>
 </div>
 <div id="modal-new-task" class="modal-overlay hidden"><div class="modal-sheet"><div class="modal-handle"></div><div class="modal-header"><div><div class="modal-title">Nova Tarefa</div><div class="modal-client">Preencha os dados do pedido</div></div><button class="modal-close" onclick="closeModal('modal-new-task')">✕</button></div><div class="new-task-modal"><div style="margin-top:16px;"><div class="modal-section-title">📋 Dados do pedido</div><div class="form-group"><label>Nome do projeto / peça</label><input type="text" id="new-task-title" placeholder="Ex: Boneco Dragon Ball"></div><div class="form-group"><label>Cliente</label><input type="text" id="new-task-client" placeholder="Ex: João Silva"></div><div class="form-group"><label>Coluna inicial</label><select id="new-task-status"><option value="cotacao">Em Cotação</option><option value="afazer">A Fazer</option><option value="fazendo">Fazendo</option><option value="feito">Feito</option></select></div><button class="btn-add-item btn-add-fil" onclick="createTask()" style="margin-top:8px;">✅ Criar Tarefa</button></div></div></div></div>
-<div id="modal-task-detail" class="modal-overlay hidden"><div class="modal-sheet"><div class="modal-handle"></div><div class="modal-header"><div><div class="modal-title" id="detail-title">—</div><div class="modal-client" id="detail-client">—</div></div><button class="modal-close" onclick="closeModal('modal-task-detail')">✕</button></div><div class="modal-body"><div class="modal-section-title">📍 Status</div><div class="status-mover" id="status-mover-btns"><button class="status-btn" data-status="cotacao" onclick="moveTaskTo('cotacao')">🟣 Cotação</button><button class="status-btn" data-status="afazer" onclick="moveTaskTo('afazer')">🟡 A Fazer</button><button class="status-btn" data-status="fazendo" onclick="moveTaskTo('fazendo')">🔵 Fazendo</button><button class="status-btn" data-status="feito" onclick="moveTaskTo('feito')">🟢 Feito</button></div><div class="modal-section-title" style="margin-top:20px;">🤖 Checklist IA</div><div id="upload-area-wrap"><div class="upload-area" onclick="document.getElementById('img-upload-input').click()"><div class="emoji">📷</div><p>Clique para enviar uma <strong>foto do modelo</strong><br>A IA vai sugerir as etapas de impressão</p></div><input type="file" id="img-upload-input" accept="image/*" style="display:none;" onchange="onImageSelected(event)"></div><div id="img-preview-wrap" class="hidden"><img id="img-preview" class="upload-preview" src="" alt="preview"><button onclick="clearImage()" style="font-size:0.8em;color:#6b7280;background:none;border:none;cursor:pointer;padding:0;margin-bottom:6px;">🗑 Remover imagem</button></div><button class="btn-ia" id="btn-gerar-ia" onclick="gerarChecklistIA()">✨ Gerar Checklist com IA</button><div class="ia-loading hidden" id="ia-loading"><div class="ia-spinner"></div><p>IA analisando o modelo e gerando etapas...</p></div><div class="modal-section-title" style="margin-top:20px;">🧩 Peças do Projeto</div><div id="checklist-container"></div><div class="add-peca-row"><input type="text" id="new-peca-input" placeholder="Nome da peça (ex: Braço Direito)"><button onclick="addPecaManual()">+ Peça</button></div><div id="progress-section" style="margin-top:16px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-size:0.8em;font-weight:700;color:#374151;">Progresso Geral</span><span id="progress-label" style="font-size:0.8em;font-weight:800;color:#16a34a;">0 / 0</span></div><div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-bar" style="width:0%"></div></div></div><button onclick="deleteCurrentTask()" style="margin-top:28px;width:100%;padding:12px;background:#fee2e2;color:#dc2626;border:none;border-radius:12px;font-weight:700;font-size:0.9em;cursor:pointer;font-family:'Inter',sans-serif;">🗑 Excluir Tarefa</button></div></div></div>
+<div id="modal-task-detail" class="modal-overlay hidden"><div class="modal-sheet"><div class="modal-handle"></div><div class="modal-header"><div><div class="modal-title" id="detail-title">—</div><div class="modal-client" id="detail-client">—</div></div><button class="modal-close" onclick="closeModal('modal-task-detail')">✕</button></div><div class="modal-body"><div class="modal-section-title">📍 Status</div><div class="status-mover" id="status-mover-btns"><button class="status-btn" data-status="cotacao" onclick="moveTaskTo('cotacao')">🟣 Cotação</button><button class="status-btn" data-status="afazer" onclick="moveTaskTo('afazer')">🟡 A Fazer</button><button class="status-btn" data-status="fazendo" onclick="moveTaskTo('fazendo')">🔵 Fazendo</button><button class="status-btn" data-status="feito" onclick="moveTaskTo('feito')">🟢 Feito</button></div><div class="modal-section-title" style="margin-top:20px;">💳 Pagamento</div><div class="task-payment-panel"><div class="payment-grid"><div class="form-group"><label>Forma de pagamento</label><select id="task-pay-method"><option value="">Não informado</option><option value="Pix">Pix</option><option value="Cartão">Cartão</option><option value="Dinheiro">Dinheiro</option><option value="Boleto">Boleto</option><option value="Transferência">Transferência</option></select></div><div class="form-group"><label>Valor total (R$)</label><input type="number" id="task-pay-total" placeholder="0,00" step="0.01"></div><div class="form-group"><label>Quanto pagou (R$)</label><input type="number" id="task-pay-paid" placeholder="0,00" step="0.01"></div><div class="form-group"><label>Data de pagamento</label><input type="date" id="task-pay-date"></div><div class="form-group"><label>Parcelas pagas</label><input type="number" id="task-pay-installments-paid" min="0" value="0"></div><div class="form-group"><label>Total de parcelas</label><input type="number" id="task-pay-installments-total" min="1" value="1"></div></div><button class="payment-save-btn" onclick="saveCurrentTaskPayment()">Salvar pagamento</button></div><div class="modal-section-title" style="margin-top:20px;">🤖 Checklist IA</div><div id="upload-area-wrap"><div class="upload-area" onclick="document.getElementById('img-upload-input').click()"><div class="emoji">📷</div><p>Clique para enviar uma <strong>foto do modelo</strong><br>A IA vai sugerir as etapas de impressão</p></div><input type="file" id="img-upload-input" accept="image/*" style="display:none;" onchange="onImageSelected(event)"></div><div id="img-preview-wrap" class="hidden"><img id="img-preview" class="upload-preview" src="" alt="preview"><button onclick="clearImage()" style="font-size:0.8em;color:#6b7280;background:none;border:none;cursor:pointer;padding:0;margin-bottom:6px;">🗑 Remover imagem</button></div><button class="btn-ia" id="btn-gerar-ia" onclick="gerarChecklistIA()">✨ Gerar Checklist com IA</button><div class="ia-loading hidden" id="ia-loading"><div class="ia-spinner"></div><p>IA analisando o modelo e gerando etapas...</p></div><div class="modal-section-title" style="margin-top:20px;">🧩 Peças do Projeto</div><div id="checklist-container"></div><div class="add-peca-row"><input type="text" id="new-peca-input" placeholder="Nome da peça (ex: Braço Direito)"><button onclick="addPecaManual()">+ Peça</button></div><div id="progress-section" style="margin-top:16px;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;"><span style="font-size:0.8em;font-weight:700;color:#374151;">Progresso Geral</span><span id="progress-label" style="font-size:0.8em;font-weight:800;color:#16a34a;">0 / 0</span></div><div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-bar" style="width:0%"></div></div></div><button onclick="deleteCurrentTask()" style="margin-top:28px;width:100%;padding:12px;background:#fee2e2;color:#dc2626;border:none;border-radius:12px;font-weight:700;font-size:0.9em;cursor:pointer;font-family:'Inter',sans-serif;">🗑 Excluir Tarefa</button></div></div></div>
 <script>
 const SUPABASE_URL = 'https://kzgfvpmuxptgwvxszdvt.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt6Z2Z2cG11eHB0Z3d2eHN6ZHZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwNjE0ODMsImV4cCI6MjA5MjYzNzQ4M30.8KQeJWooaM11Dmylp7im8JWFC6Gde46Ou8a1l2z6G88';
@@ -496,10 +571,141 @@ const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 let tasksCache = [];
 let stockCache = { fil:[], res:[], pin:[], mat:[] };
 let listaCompras = [];
+const TASK_PAYMENT_STORAGE_KEY = 'trivertido_task_payments_v1';
+const FIN_BILL_STORAGE_KEY = 'trivertido_fin_bill_meta_v1';
 
 function showToast(msg, type='') { const t = document.createElement('div'); t.className = 'toast ' + type; t.innerText = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 3000); }
 function showLoading(msg='Carregando...') { const el = document.getElementById('global-loading'); el.querySelector('p').innerText = msg; el.style.display = 'flex'; }
 function hideLoading() { document.getElementById('global-loading').style.display = 'none'; }
+
+function readTaskPaymentStore() {
+    try { return JSON.parse(localStorage.getItem(TASK_PAYMENT_STORAGE_KEY) || '{}'); }
+    catch { return {}; }
+}
+
+function writeTaskPaymentStore(store) {
+    localStorage.setItem(TASK_PAYMENT_STORAGE_KEY, JSON.stringify(store));
+}
+
+function readFinBillStore() {
+    try { return JSON.parse(localStorage.getItem(FIN_BILL_STORAGE_KEY) || '{}'); }
+    catch { return {}; }
+}
+
+function writeFinBillStore(store) {
+    localStorage.setItem(FIN_BILL_STORAGE_KEY, JSON.stringify(store));
+}
+
+function getBillMeta(item) {
+    const local = readFinBillStore()[item.id] || {};
+    return {
+        method: item.payment_method || local.method || '',
+        dueDate: item.payment_due_date || local.dueDate || '',
+        installmentsPaid: parseInt(item.payment_installments_paid ?? local.installmentsPaid ?? 0) || 0,
+        installmentsTotal: Math.max(parseInt(item.payment_installments_total ?? local.installmentsTotal ?? 1) || 1, 1)
+    };
+}
+
+function toMoneyNumber(value) {
+    const n = parseFloat(value);
+    return Number.isFinite(n) ? n : 0;
+}
+
+function getTaskPayment(task) {
+    const local = readTaskPaymentStore()[task.id] || {};
+    return {
+        method: task.payment_method || local.method || '',
+        total: toMoneyNumber(task.payment_total ?? local.total),
+        paid: toMoneyNumber(task.payment_paid ?? local.paid),
+        dueDate: task.payment_due_date || local.dueDate || '',
+        installmentsPaid: parseInt(task.payment_installments_paid ?? local.installmentsPaid ?? 0) || 0,
+        installmentsTotal: Math.max(parseInt(task.payment_installments_total ?? local.installmentsTotal ?? 1) || 1, 1)
+    };
+}
+
+function isPaymentOverdue(payment) {
+    if (!payment.dueDate) return false;
+    if (payment.total > 0 && payment.paid >= payment.total) return false;
+    const today = new Date(); today.setHours(0,0,0,0);
+    const due = new Date(payment.dueDate + 'T00:00:00');
+    return due < today;
+}
+
+function formatShortDate(dateStr) {
+    if (!dateStr) return '';
+    const [year, month, day] = dateStr.split('-');
+    return `${day}/${month}`;
+}
+
+function addMonthsToDate(dateStr, months) {
+    const d = new Date(dateStr + 'T00:00:00');
+    d.setMonth(d.getMonth() + months);
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function renderPaymentChips(payment) {
+    const chips = [];
+    if (payment.method) chips.push(`<span class="payment-chip">${payment.method}</span>`);
+    if (payment.total > 0 || payment.paid > 0) chips.push(`<span class="payment-chip money">${formatCurrency(payment.paid)} / ${formatCurrency(payment.total)}</span>`);
+    if (payment.installmentsTotal > 1 || payment.installmentsPaid > 0) chips.push(`<span class="payment-chip">${payment.installmentsPaid}/${payment.installmentsTotal}</span>`);
+    if (payment.dueDate) chips.push(`<span class="payment-chip ${isPaymentOverdue(payment) ? 'overdue' : 'due'}">${isPaymentOverdue(payment) ? 'Devendo' : 'Pagamento'} ${formatShortDate(payment.dueDate)}</span>`);
+    if (payment.total > 0 && payment.paid >= payment.total) chips.push('<span class="payment-chip paid">Pago</span>');
+    return chips.length ? `<div class="kanban-payment-line">${chips.join('')}</div>` : '';
+}
+
+function fillTaskPaymentForm(task) {
+    const payment = getTaskPayment(task);
+    document.getElementById('task-pay-method').value = payment.method;
+    document.getElementById('task-pay-total').value = payment.total || '';
+    document.getElementById('task-pay-paid').value = payment.paid || '';
+    document.getElementById('task-pay-date').value = payment.dueDate;
+    document.getElementById('task-pay-installments-paid').value = payment.installmentsPaid;
+    document.getElementById('task-pay-installments-total').value = payment.installmentsTotal;
+}
+
+async function saveCurrentTaskPayment() {
+    const task = tasksCache.find(t => t.id === currentTaskId);
+    if (!task) return;
+    const payment = {
+        method: document.getElementById('task-pay-method').value,
+        total: toMoneyNumber(document.getElementById('task-pay-total').value),
+        paid: toMoneyNumber(document.getElementById('task-pay-paid').value),
+        dueDate: document.getElementById('task-pay-date').value,
+        installmentsPaid: parseInt(document.getElementById('task-pay-installments-paid').value || '0') || 0,
+        installmentsTotal: Math.max(parseInt(document.getElementById('task-pay-installments-total').value || '1') || 1, 1)
+    };
+    payment.installmentsPaid = Math.min(payment.installmentsPaid, payment.installmentsTotal);
+
+    Object.assign(task, {
+        payment_method: payment.method,
+        payment_total: payment.total,
+        payment_paid: payment.paid,
+        payment_due_date: payment.dueDate || null,
+        payment_installments_paid: payment.installmentsPaid,
+        payment_installments_total: payment.installmentsTotal
+    });
+
+    const store = readTaskPaymentStore();
+    store[task.id] = payment;
+    writeTaskPaymentStore(store);
+
+    try {
+        await sb.from('tasks').update({
+            payment_method: payment.method,
+            payment_total: payment.total,
+            payment_paid: payment.paid,
+            payment_due_date: payment.dueDate || null,
+            payment_installments_paid: payment.installmentsPaid,
+            payment_installments_total: payment.installmentsTotal
+        }).eq('id', task.id);
+    } catch(e) { /* banco antigo: mantém no navegador */ }
+
+    if (task.status !== 'cotacao') { await syncTaskFinanceiro(task); }
+
+    renderKanban();
+    renderFinanceiro();
+    showToast('Pagamento salvo!', 'success');
+}
 
 async function init() {
     showLoading('Conectando ao banco de dados...');
@@ -620,11 +826,11 @@ const ETAPAS_PECA = [{ label: '🖨️ Imprimir', done: false },{ label: '✂️
 const ETAPAS_FINAIS = [{ label: '📦 Embalar', done: false },{ label: '🚚 Entregar ao cliente', done: false }];
 let currentTaskId = null, currentImageBase64 = null;
 function countSteps(task) { let total = 0, done = 0; (task.pecas || []).forEach(p => { p.steps.forEach(s => { total++; if (s.done) done++; }); }); (task.etapasFinais || []).forEach(s => { total++; if (s.done) done++; }); return { total, done }; }
-function renderKanban() { const cols = { cotacao: { title: '🟣 Em Cotação', cls: 'col-cotacao' }, afazer: { title: '🟡 A Fazer', cls: 'col-afazer' }, fazendo: { title: '🔵 Fazendo', cls: 'col-fazendo' }, feito: { title: '🟢 Feito', cls: 'col-feito' } }; const board = document.getElementById('kanban-board'); let html = ''; Object.entries(cols).forEach(([key, col]) => { const colTasks = tasksCache.filter(t => t.status === key); html += `<div class="kanban-col ${col.cls}"><div class="kanban-col-header"><span class="kanban-col-title">${col.title}</span><span class="kanban-col-count">${colTasks.length}</span></div>`; if (colTasks.length === 0) { html += `<div style="text-align:center;padding:20px 10px;color:#d1d5db;font-size:0.8em;">Nenhuma tarefa</div>`; } else { colTasks.forEach(task => { const { total, done } = countSteps(task); const pecaCount = (task.pecas || []).length; html += `<div class="kanban-card" onclick="openTaskDetail(${task.id})"><button class="kanban-card-del" onclick="event.stopPropagation(); deleteTask(${task.id})">✕</button><div class="kanban-card-title">${task.title}</div><div class="kanban-card-client">👤 ${task.client}</div><div class="kanban-card-footer"><span class="kanban-card-progress ${total > 0 ? 'has-tasks' : ''}">${pecaCount > 0 ? `🧩 ${pecaCount} peça${pecaCount > 1 ? 's' : ''}` : '📋 Sem peças'}${total > 0 ? ` · ✅ ${done}/${total}` : ''}</span></div></div>`; }); } html += `</div>`; }); board.innerHTML = html; }
+function renderKanban() { const cols = { cotacao: { title: '🟣 Em Cotação', cls: 'col-cotacao' }, afazer: { title: '🟡 A Fazer', cls: 'col-afazer' }, fazendo: { title: '🔵 Fazendo', cls: 'col-fazendo' }, feito: { title: '🟢 Feito', cls: 'col-feito' } }; const board = document.getElementById('kanban-board'); let html = ''; Object.entries(cols).forEach(([key, col]) => { const colTasks = tasksCache.filter(t => t.status === key); html += `<div class="kanban-col ${col.cls}"><div class="kanban-col-header"><span class="kanban-col-title">${col.title}</span><span class="kanban-col-count">${colTasks.length}</span></div>`; if (colTasks.length === 0) { html += `<div style="text-align:center;padding:20px 10px;color:#d1d5db;font-size:0.8em;">Nenhuma tarefa</div>`; } else { colTasks.forEach(task => { const { total, done } = countSteps(task); const pecaCount = (task.pecas || []).length; const payment = getTaskPayment(task); html += `<div class="kanban-card" onclick="openTaskDetail(${task.id})"><button class="kanban-card-del" onclick="event.stopPropagation(); deleteTask(${task.id})">✕</button><div class="kanban-card-title">${task.title}</div><div class="kanban-card-client">👤 ${task.client}</div>${renderPaymentChips(payment)}<div class="kanban-card-footer"><span class="kanban-card-progress ${total > 0 ? 'has-tasks' : ''}">${pecaCount > 0 ? `🧩 ${pecaCount} peça${pecaCount > 1 ? 's' : ''}` : '📋 Sem peças'}${total > 0 ? ` · ✅ ${done}/${total}` : ''}</span></div></div>`; }); } html += `</div>`; }); board.innerHTML = html; }
 function openNewTaskModal() { document.getElementById('new-task-title').value = ''; document.getElementById('new-task-client').value = ''; document.getElementById('new-task-status').value = 'cotacao'; document.getElementById('modal-new-task').classList.remove('hidden'); }
 async function createTask() { const title = document.getElementById('new-task-title').value.trim(), client = document.getElementById('new-task-client').value.trim(), status = document.getElementById('new-task-status').value; if (!title) { alert('Informe o nome do projeto!'); return; } try { showLoading('Criando tarefa...'); await saveNewTask(title, client || 'Sem cliente', status); hideLoading(); closeModal('modal-new-task'); renderKanban(); showToast('✅ Tarefa criada!', 'success'); } catch(e) { hideLoading(); showToast('Erro ao criar tarefa', 'error'); } }
 async function deleteTask(id) { if (!confirm('Excluir esta tarefa?')) return; try { await deleteTaskFromDB(id); renderKanban(); showToast('Tarefa excluída', 'success'); } catch(e) { showToast('Erro ao excluir', 'error'); } }
-function openTaskDetail(id) { const task = tasksCache.find(t => t.id === id); if (!task) return; currentTaskId = id; currentImageBase64 = task.image || null; document.getElementById('detail-title').innerText = task.title; document.getElementById('detail-client').innerText = '👤 ' + task.client; document.querySelectorAll('.status-btn').forEach(btn => { btn.className = 'status-btn'; if (btn.dataset.status === task.status) btn.classList.add('active-' + task.status); }); if (task.image) { document.getElementById('upload-area-wrap').classList.add('hidden'); document.getElementById('img-preview-wrap').classList.remove('hidden'); document.getElementById('img-preview').src = task.image; } else { document.getElementById('upload-area-wrap').classList.remove('hidden'); document.getElementById('img-preview-wrap').classList.add('hidden'); document.getElementById('img-preview').src = ''; } renderChecklist(task); document.getElementById('new-peca-input').value = ''; document.getElementById('modal-task-detail').classList.remove('hidden'); }
+function openTaskDetail(id) { const task = tasksCache.find(t => t.id === id); if (!task) return; currentTaskId = id; currentImageBase64 = task.image || null; document.getElementById('detail-title').innerText = task.title; document.getElementById('detail-client').innerText = '👤 ' + task.client; document.querySelectorAll('.status-btn').forEach(btn => { btn.className = 'status-btn'; if (btn.dataset.status === task.status) btn.classList.add('active-' + task.status); }); fillTaskPaymentForm(task); if (task.image) { document.getElementById('upload-area-wrap').classList.add('hidden'); document.getElementById('img-preview-wrap').classList.remove('hidden'); document.getElementById('img-preview').src = task.image; } else { document.getElementById('upload-area-wrap').classList.remove('hidden'); document.getElementById('img-preview-wrap').classList.add('hidden'); document.getElementById('img-preview').src = ''; } renderChecklist(task); document.getElementById('new-peca-input').value = ''; document.getElementById('modal-task-detail').classList.remove('hidden'); }
 function renderChecklist(task) { const container = document.getElementById('checklist-container'); const pecas = task.pecas || [], etapasFinais = task.etapasFinais || []; let html = ''; if (pecas.length === 0) { html += `<div style="text-align:center;padding:20px 8px;color:#9ca3af;font-size:0.85em;background:#f9fafb;border-radius:12px;border:1.5px dashed #e5e7eb;"><div style="font-size:1.8em;margin-bottom:6px;">🧩</div><p style="margin:0;">Nenhuma peça ainda.<br>Use a <strong>IA</strong> ou adicione manualmente abaixo.</p></div>`; } else { pecas.forEach((peca, pi) => { const donePeca = peca.steps.filter(s => s.done).length, totalPeca = peca.steps.length, allDone = donePeca === totalPeca; html += `<div class="peca-bloco ${allDone ? 'all-done' : ''}" id="peca-bloco-${pi}"><div class="peca-header" onclick="togglePecaBloco(${pi})"><span class="peca-icon">🧩</span><span class="peca-name">${peca.nome}</span><span class="peca-progress-pill">${donePeca}/${totalPeca}</span><button class="peca-del-btn" onclick="event.stopPropagation(); deletePeca(${peca.id})">✕</button><span class="peca-chevron open" id="chevron-${pi}">▼</span></div><div class="peca-steps open" id="steps-${pi}">${peca.steps.map((step) => `<div class="step-item ${step.done ? 'done' : ''}"><input type="checkbox" class="step-check" ${step.done ? 'checked' : ''} onchange="toggleStep(${step.id}, this.checked, ${peca.id})"><span class="step-label">${step.label}</span></div>`).join('')}</div></div>`; }); } if (pecas.length > 0 || etapasFinais.length > 0) { html += `<div class="final-steps-section"><div class="final-steps-title">📦 Finalização do Pedido</div><div class="final-steps-body">${etapasFinais.map((step) => `<div class="final-step-item ${step.done ? 'done' : ''}"><input type="checkbox" class="step-check" ${step.done ? 'checked' : ''} onchange="toggleFinalStep(${step.id}, this.checked)"><span class="step-label">${step.label}</span></div>`).join('')}</div></div>`; } container.innerHTML = html; updateProgress(task); }
 function togglePecaBloco(pi) { const steps = document.getElementById('steps-' + pi), chevron = document.getElementById('chevron-' + pi), isOpen = steps.classList.contains('open'); steps.classList.toggle('open', !isOpen); chevron.classList.toggle('open', !isOpen); }
 async function toggleStep(stepId, done, pecaId) { try { await toggleStepInDB(stepId, done, pecaId, currentTaskId); const task = tasksCache.find(t => t.id === currentTaskId); if (task) { renderChecklist(task); renderKanban(); } } catch(e) { showToast('Erro ao salvar', 'error'); } }
@@ -633,7 +839,7 @@ async function deletePeca(pecaId) { try { await deletePecaFromDB(pecaId, current
 async function addPecaManual() { const input = document.getElementById('new-peca-input'), nome = input.value.trim(); if (!nome) return; try { await addPecaToDB(currentTaskId, nome); const task = tasksCache.find(t => t.id === currentTaskId); if (task) { renderChecklist(task); renderKanban(); } input.value = ''; } catch(e) { showToast('Erro ao adicionar peça', 'error'); } }
 function updateProgress(task) { const { total, done } = countSteps(task); document.getElementById('progress-label').innerText = `${done} / ${total}`; document.getElementById('progress-bar').style.width = total > 0 ? `${(done/total)*100}%` : '0%'; }
 async function moveTaskTo(status) { try { await updateTaskStatus(currentTaskId, status);
-        if (status === 'afazer') { const task = tasksCache.find(t => t.id === currentTaskId); if (task && !finCache.find(f => f.task_id === currentTaskId)) { await registrarVendaFinanceiro(task.title, task.client, currentTaskId); } } document.querySelectorAll('.status-btn').forEach(btn => { btn.className = 'status-btn'; if (btn.dataset.status === status) btn.classList.add('active-' + status); }); renderKanban(); showToast('Status atualizado!', 'success'); } catch(e) { showToast('Erro ao atualizar status', 'error'); } }
+        const task = tasksCache.find(t => t.id === currentTaskId); if (task && status !== 'cotacao') { await syncTaskFinanceiro(task); } document.querySelectorAll('.status-btn').forEach(btn => { btn.className = 'status-btn'; if (btn.dataset.status === status) btn.classList.add('active-' + status); }); renderKanban(); renderFinanceiro(); showToast('Status atualizado!', 'success'); } catch(e) { showToast('Erro ao atualizar status', 'error'); } }
 async function deleteCurrentTask() { if (!confirm('Excluir esta tarefa permanentemente?')) return; try { await deleteTaskFromDB(currentTaskId); closeModal('modal-task-detail'); renderKanban(); showToast('Tarefa excluída', 'success'); } catch(e) { showToast('Erro ao excluir', 'error'); } }
 function onImageSelected(event) { const file = event.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = async (e) => { const base64 = e.target.result; currentImageBase64 = base64; document.getElementById('upload-area-wrap').classList.add('hidden'); document.getElementById('img-preview-wrap').classList.remove('hidden'); document.getElementById('img-preview').src = base64; try { await updateTaskImage(currentTaskId, base64); } catch(e) {} }; reader.readAsDataURL(file); }
 function clearImage() { currentImageBase64 = null; document.getElementById('img-upload-input').value = ''; document.getElementById('upload-area-wrap').classList.remove('hidden'); document.getElementById('img-preview-wrap').classList.add('hidden'); document.getElementById('img-preview').src = ''; updateTaskImage(currentTaskId, null).catch(() => {}); }
@@ -645,6 +851,7 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Enter' && document.
 let finCache = [];
 let finTipo = 'receita';
 let finTabAtual = 'todos';
+let finSubpageAtual = 'relatorio';
 
 async function loadFinanceiro() {
     const { data, error } = await sb.from('financeiro').select('*').order('created_at', { ascending: false });
@@ -672,6 +879,44 @@ async function addLancamento() {
     } catch(e) { hideLoading(); showToast('Erro ao salvar', 'error'); }
 }
 
+async function addContaPagar() {
+    const desc = document.getElementById('bill-desc').value.trim();
+    const valor = parseFloat(document.getElementById('bill-valor').value);
+    const dueDate = document.getElementById('bill-date').value;
+    const method = document.getElementById('bill-method').value;
+    const installments = Math.max(parseInt(document.getElementById('bill-installments').value || '1') || 1, 1);
+    if (!desc) { showToast('Informe a descrição!', 'error'); return; }
+    if (!valor || valor <= 0) { showToast('Informe um valor válido!', 'error'); return; }
+    if (!dueDate) { showToast('Informe a data de pagamento!', 'error'); return; }
+
+    const base = { tipo: 'gasto', descricao: desc, valor, categoria: 'outros', status: 'pendente' };
+    const extra = {
+        payment_method: method,
+        payment_due_date: dueDate,
+        payment_installments_total: installments,
+        payment_installments_paid: 0
+    };
+
+    try {
+        showLoading('Salvando conta...');
+        let result = await sb.from('financeiro').insert({ ...base, ...extra }).select().single();
+        if (result.error) result = await sb.from('financeiro').insert(base).select().single();
+        if (result.error) throw result.error;
+        const data = { ...result.data, ...extra };
+        const store = readFinBillStore();
+        store[data.id] = { method, dueDate, installmentsPaid: 0, installmentsTotal: installments };
+        writeFinBillStore(store);
+        finCache.unshift(data);
+        hideLoading();
+        document.getElementById('bill-desc').value = '';
+        document.getElementById('bill-valor').value = '';
+        document.getElementById('bill-date').value = '';
+        document.getElementById('bill-installments').value = '1';
+        showToast('Conta adicionada!', 'success');
+        renderFinanceiro();
+    } catch(e) { hideLoading(); showToast('Erro ao salvar conta', 'error'); }
+}
+
 async function deleteLancamento(id) {
     try {
         await sb.from('financeiro').delete().eq('id', id);
@@ -692,11 +937,54 @@ async function toggleStatusLanc(id, statusAtual) {
     } catch(e) { showToast('Erro ao atualizar status', 'error'); }
 }
 
-async function registrarVendaFinanceiro(taskTitle, taskClient, taskId) {
+async function markBillPaid(id) {
     try {
-        const desc = `${taskTitle} — ${taskClient}`;
-        const { data } = await sb.from('financeiro').insert({ tipo: 'receita', descricao: desc, valor: 0, categoria: 'venda', status: 'pendente', task_id: taskId }).select().single();
-        if (data) finCache.unshift(data);
+        const item = finCache.find(i => i.id === id);
+        if (!item) return;
+        const meta = getBillMeta(item);
+        const nextPaid = Math.min(meta.installmentsPaid + 1, meta.installmentsTotal);
+        const isDone = nextPaid >= meta.installmentsTotal;
+        const nextDate = !isDone && meta.dueDate ? addMonthsToDate(meta.dueDate, 1) : meta.dueDate;
+        let result = await sb.from('financeiro').update({
+            status: isDone ? 'pago' : 'pendente',
+            payment_due_date: nextDate || null,
+            payment_installments_paid: nextPaid
+        }).eq('id', id);
+        if (result.error) await sb.from('financeiro').update({ status: isDone ? 'pago' : 'pendente' }).eq('id', id);
+        if (item) {
+            item.status = isDone ? 'pago' : 'pendente';
+            item.payment_due_date = nextDate;
+            item.payment_installments_paid = nextPaid;
+            const store = readFinBillStore();
+            store[item.id] = { ...meta, dueDate: nextDate, installmentsPaid: nextPaid };
+            writeFinBillStore(store);
+        }
+        renderFinanceiro();
+        showToast(isDone ? 'Conta quitada!' : `Parcela ${nextPaid}/${meta.installmentsTotal} paga`, 'success');
+    } catch(e) { showToast('Erro ao atualizar conta', 'error'); }
+}
+
+async function syncTaskFinanceiro(task) {
+    const payment = getTaskPayment(task);
+    const status = payment.total > 0 && payment.paid >= payment.total ? 'recebido' : 'pendente';
+    const payload = {
+        descricao: `${task.title} — ${task.client}`,
+        valor: payment.total || 0,
+        status,
+        payment_method: payment.method || null,
+        payment_due_date: payment.dueDate || null,
+        payment_installments_total: payment.installmentsTotal,
+        payment_installments_paid: payment.installmentsPaid
+    };
+    const existing = finCache.find(f => f.task_id === task.id);
+    try {
+        if (existing) {
+            const { error } = await sb.from('financeiro').update(payload).eq('id', existing.id);
+            if (!error) Object.assign(existing, payload);
+        } else {
+            const { data, error } = await sb.from('financeiro').insert({ tipo: 'receita', categoria: 'venda', task_id: task.id, ...payload }).select().single();
+            if (!error && data) finCache.unshift(data);
+        }
     } catch(e) { /* silencioso */ }
 }
 
@@ -715,6 +1003,17 @@ function setFinTipo(tipo) {
 function switchFinTab(tab) {
     finTabAtual = tab;
     ['todos','receitas','gastos'].forEach(t => document.getElementById('ftab-' + t).classList.toggle('active', t === tab));
+    renderFinanceiro();
+}
+
+function switchFinSubpage(page) {
+    finSubpageAtual = page;
+    document.getElementById('fin-subtab-relatorio').classList.toggle('active', page === 'relatorio');
+    document.getElementById('fin-subtab-receber').classList.toggle('active', page === 'receber');
+    document.getElementById('fin-subtab-contas').classList.toggle('active', page === 'contas');
+    document.getElementById('fin-report-view').classList.toggle('hidden', page !== 'relatorio');
+    document.getElementById('fin-receivables-view').classList.toggle('hidden', page !== 'receber');
+    document.getElementById('fin-bills-view').classList.toggle('hidden', page !== 'contas');
     renderFinanceiro();
 }
 
@@ -756,6 +1055,9 @@ function renderFinanceiro() {
     document.getElementById('fin-pendente-sub').textContent = `${receitas.filter(i => i.status === 'pendente').length} venda${receitas.filter(i => i.status === 'pendente').length !== 1 ? 's' : ''} aguardando`;
 
     renderFinChart(mes);
+    renderContasPagar(mes);
+    renderContasReceber(mes);
+    renderFinProjetos(doMes);
 
     let lista = doMes;
     if (finTabAtual === 'receitas') lista = receitas;
@@ -790,6 +1092,126 @@ function renderFinanceiro() {
             <button class="fin-lanc-del" onclick="deleteLancamento(${item.id})">✕</button>
         </div>`;
     }).join('');
+}
+
+function renderContasPagar(mesSelecionado) {
+    const [ano, m] = mesSelecionado.split('-').map(Number);
+    const contas = finCache.filter(i => {
+        if (i.tipo !== 'gasto') return false;
+        const meta = getBillMeta(i);
+        const d = meta.dueDate ? new Date(meta.dueDate + 'T00:00:00') : new Date(i.created_at);
+        return d.getFullYear() === ano && (d.getMonth()+1) === m;
+    });
+    const abertas = contas.filter(i => i.status !== 'pago');
+    const vencidas = abertas.filter(i => {
+        const meta = getBillMeta(i);
+        return meta.dueDate && isPaymentOverdue({ dueDate: meta.dueDate, total: i.valor || 0, paid: 0 });
+    });
+    const totalAberto = abertas.reduce((s, i) => s + (i.valor || 0), 0);
+    const totalVencido = vencidas.reduce((s, i) => s + (i.valor || 0), 0);
+    document.getElementById('bills-open-total').textContent = formatCurrency(totalAberto);
+    document.getElementById('bills-overdue-total').textContent = formatCurrency(totalVencido);
+    document.getElementById('bills-count').textContent = contas.length;
+
+    const container = document.getElementById('bills-list');
+    if (contas.length === 0) {
+        container.innerHTML = '<div class="empty-fin">Nenhuma conta neste mês.</div>';
+        return;
+    }
+
+    container.innerHTML = contas.map(item => {
+        const meta = getBillMeta(item);
+        const overdue = item.status !== 'pago' && meta.dueDate && isPaymentOverdue({ dueDate: meta.dueDate, total: item.valor || 0, paid: 0 });
+        const dateLabel = meta.dueDate ? formatShortDate(meta.dueDate) : 'sem data';
+        const installments = `${meta.installmentsPaid}/${meta.installmentsTotal}`;
+        return `<div class="bill-card ${overdue ? 'overdue' : ''}">
+            <div class="bill-card-top">
+                <div>
+                    <div class="bill-title">${item.descricao}</div>
+                    <div class="bill-meta">${meta.method || 'Forma não informada'} · ${installments} · ${dateLabel} ${overdue ? '<span class="payment-chip overdue">Devendo</span>' : ''} ${item.status === 'pago' ? '<span class="payment-chip paid">Pago</span>' : ''}</div>
+                </div>
+                <div class="bill-value">${formatCurrency(item.valor || 0)}</div>
+            </div>
+            <div class="bill-actions">
+                <button class="bill-pay-btn" onclick="markBillPaid(${item.id})">${item.status === 'pago' ? 'Pago' : 'Pagar parcela'}</button>
+                <button class="bill-open-btn" onclick="switchFinTab('gastos'); switchFinSubpage('relatorio')">Ver relatório</button>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function renderContasReceber(mesSelecionado) {
+    const [ano, m] = mesSelecionado.split('-').map(Number);
+    const contas = finCache.filter(i => {
+        if (i.tipo !== 'receita') return false;
+        const meta = getBillMeta(i);
+        const d = meta.dueDate ? new Date(meta.dueDate + 'T00:00:00') : new Date(i.created_at);
+        return d.getFullYear() === ano && (d.getMonth()+1) === m;
+    });
+    const abertas = contas.filter(i => i.status !== 'recebido');
+    const vencidas = abertas.filter(i => {
+        const meta = getBillMeta(i);
+        return meta.dueDate && isPaymentOverdue({ dueDate: meta.dueDate, total: i.valor || 0, paid: 0 });
+    });
+    const totalAberto = abertas.reduce((s, i) => s + (i.valor || 0), 0);
+    const totalVencido = vencidas.reduce((s, i) => s + (i.valor || 0), 0);
+    document.getElementById('receivables-open-total').textContent = formatCurrency(totalAberto);
+    document.getElementById('receivables-overdue-total').textContent = formatCurrency(totalVencido);
+    document.getElementById('receivables-count').textContent = contas.length;
+
+    const container = document.getElementById('receivables-list');
+    if (contas.length === 0) {
+        container.innerHTML = '<div class="empty-fin">Nenhuma venda a receber neste mês.</div>';
+        return;
+    }
+
+    container.innerHTML = contas.map(item => {
+        const meta = getBillMeta(item);
+        const overdue = item.status !== 'recebido' && meta.dueDate && isPaymentOverdue({ dueDate: meta.dueDate, total: item.valor || 0, paid: 0 });
+        const dateLabel = meta.dueDate ? formatShortDate(meta.dueDate) : 'sem data';
+        const installments = `${meta.installmentsPaid}/${meta.installmentsTotal}`;
+        return `<div class="bill-card ${overdue ? 'overdue' : ''}">
+            <div class="bill-card-top">
+                <div>
+                    <div class="bill-title">${item.descricao}</div>
+                    <div class="bill-meta">${meta.method || 'Forma não informada'} · ${installments} · ${dateLabel} ${overdue ? '<span class="payment-chip overdue">Devendo</span>' : ''} ${item.status === 'recebido' ? '<span class="payment-chip paid">Recebido</span>' : ''}</div>
+                </div>
+                <div class="bill-value receber">${formatCurrency(item.valor || 0)}</div>
+            </div>
+            <div class="bill-actions">
+                <button class="bill-pay-btn" onclick="markReceivableInstallment(${item.id})">${item.status === 'recebido' ? 'Recebido' : (item.task_id ? 'Receber parcela' : 'Marcar recebido')}</button>
+                <button class="bill-open-btn" onclick="${item.task_id ? `showPage('tarefas'); openTaskDetail(${item.task_id})` : `switchFinTab('receitas'); switchFinSubpage('relatorio')`}">${item.task_id ? 'Ver pedido' : 'Ver relatório'}</button>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+async function markReceivableInstallment(finId) {
+    const fin = finCache.find(f => f.id === finId);
+    if (!fin || fin.status === 'recebido') return;
+    try {
+        if (fin.task_id && tasksCache.find(t => t.id === fin.task_id)) {
+            const task = tasksCache.find(t => t.id === fin.task_id);
+            const payment = getTaskPayment(task);
+            const nextInstallmentsPaid = Math.min(payment.installmentsPaid + 1, payment.installmentsTotal);
+            const isDone = nextInstallmentsPaid >= payment.installmentsTotal;
+            const parcelaValor = payment.total / payment.installmentsTotal;
+            const nextPaid = isDone ? payment.total : Math.min(payment.paid + parcelaValor, payment.total);
+            const nextDate = !isDone && payment.dueDate ? addMonthsToDate(payment.dueDate, 1) : payment.dueDate;
+            const updates = { payment_paid: nextPaid, payment_installments_paid: nextInstallmentsPaid, payment_due_date: nextDate || null };
+            await sb.from('tasks').update(updates).eq('id', task.id);
+            Object.assign(task, updates);
+            const store = readTaskPaymentStore();
+            store[task.id] = { ...payment, paid: nextPaid, installmentsPaid: nextInstallmentsPaid, dueDate: nextDate };
+            writeTaskPaymentStore(store);
+            await syncTaskFinanceiro(task);
+            renderKanban();
+            showToast(isDone ? 'Recebimento concluído!' : `Parcela ${nextInstallmentsPaid}/${payment.installmentsTotal} recebida`, 'success');
+        } else {
+            await toggleStatusLanc(finId, fin.status);
+        }
+        renderFinanceiro();
+    } catch(e) { showToast('Erro ao atualizar recebimento', 'error'); }
 }
 
 function renderFinChart(mesAtual) {
@@ -828,6 +1250,30 @@ function renderFinChart(mesAtual) {
             <span style="font-size:0.7em;font-weight:700;color:#16a34a;display:flex;align-items:center;gap:4px;"><span style="width:12px;height:6px;background:#16a34a;border-radius:3px;display:inline-block;"></span>Receitas</span>
             <span style="font-size:0.7em;font-weight:700;color:#dc2626;display:flex;align-items:center;gap:4px;"><span style="width:12px;height:6px;background:#dc2626;border-radius:3px;display:inline-block;"></span>Gastos</span>
         </div>`;
+}
+
+function renderFinProjetos(itemsDoMes) {
+    const container = document.getElementById('fin-projetos-list');
+    const projetos = itemsDoMes.filter(i => i.tipo === 'receita' && i.task_id);
+    if (projetos.length === 0) {
+        container.innerHTML = '<div class="empty-fin">Nenhum projeto com venda neste mês.</div>';
+        return;
+    }
+    container.innerHTML = projetos.map(item => {
+        const task = tasksCache.find(t => t.id === item.task_id);
+        const total = item.valor || 0;
+        const paid = task ? getTaskPayment(task).paid : (item.status === 'recebido' ? total : 0);
+        const pct = total > 0 ? Math.min((paid / total) * 100, 100) : 0;
+        const statusChip = item.status === 'recebido' ? '<span class="payment-chip paid">Recebido</span>' : (paid > 0 ? '<span class="payment-chip due">Parcial</span>' : '<span class="payment-chip overdue">Pendente</span>');
+        return `<div class="fin-projeto-item">
+            <div class="fin-lanc-icon receita">🛍</div>
+            <div class="fin-lanc-info">
+                <div class="fin-lanc-desc">${item.descricao}</div>
+                <div class="fin-lanc-meta">${formatCurrency(paid)} de ${formatCurrency(total)} ${statusChip}</div>
+                <div class="fin-projeto-bar-wrap"><div class="fin-projeto-bar-fill" style="width:${pct}%"></div></div>
+            </div>
+        </div>`;
+    }).join('');
 }
 
 init();
