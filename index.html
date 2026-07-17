@@ -572,7 +572,8 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 let tasksCache = [];
 let stockCache = { fil:[], res:[], pin:[], mat:[] };
-let listaCompras = [];
+let listaCompras = JSON.parse(localStorage.getItem('trivertido_lista_compras') || '[]');
+function saveListaCompras() { localStorage.setItem('trivertido_lista_compras', JSON.stringify(listaCompras)); }
 const TASK_PAYMENT_STORAGE_KEY = 'trivertido_task_payments_v1';
 const FIN_BILL_STORAGE_KEY = 'trivertido_fin_bill_meta_v1';
 
@@ -711,7 +712,7 @@ async function saveCurrentTaskPayment() {
 
 async function init() {
     showLoading('Conectando ao banco de dados...');
-    try { await loadTasks(); await loadStock(); await loadFinanceiro(); hideLoading(); }
+    try { await loadTasks(); await loadStock(); await loadFinanceiro(); updateListaBadge(); hideLoading(); }
     catch(e) { hideLoading(); showToast('Erro ao conectar. Verifique a conexão.', 'error'); }
 }
 
@@ -811,7 +812,7 @@ let currentEstoqueTab = 'fil', currentView = 'ver';
 
 function addToLista(category, itemId) { const item = stockCache[category].find(i => i.id === itemId); if (!item) return; if (listaCompras.find(i => i.id === itemId && i.category === category)) { showToast('Item já está na lista!'); return; } const catLabels = { fil:'Filamento', res:'Resina', pin:'Pintura', mat:'Material' }; const units = { fil:'g', res:'ml', pin:'', mat:'' }; listaCompras.push({ id: itemId, category, name: item.tipo || item.nome || '-', sub: item.cor_nome || item.marca || '', color: item.cor || '#888', qty: item.qty || '-', unit: units[category], catLabel: catLabels[category] }); updateListaBadge(); showToast('✅ Adicionado à lista!', 'success'); const btn = document.querySelector(`.stock-add-lista-btn[data-id="${itemId}"]`); if (btn) { btn.textContent = '✓ Na lista'; btn.classList.add('added'); } }
 function removeFromLista(idx) { const removed = listaCompras[idx]; listaCompras.splice(idx, 1); updateListaBadge(); renderLista(); const btn = document.querySelector(`.stock-add-lista-btn[data-id="${removed.id}"]`); if (btn) { btn.textContent = '+ Lista'; btn.classList.remove('added'); } }
-function updateListaBadge() { const badge = document.getElementById('lista-badge-count'); if (listaCompras.length > 0) { badge.textContent = listaCompras.length; badge.classList.remove('hidden'); } else { badge.classList.add('hidden'); } }
+function updateListaBadge() { saveListaCompras(); const badge = document.getElementById('lista-badge-count'); if (listaCompras.length > 0) { badge.textContent = listaCompras.length; badge.classList.remove('hidden'); } else { badge.classList.add('hidden'); } }
 function renderLista() { const container = document.getElementById('view-lista'); if (listaCompras.length === 0) { container.innerHTML = '<div class="lista-header-card"><h3>🛒 Lista de Compras</h3><p>Adicione itens clicando em "+ Lista" nos cards do estoque</p></div><div class="empty-state"><div class="emoji">🛒</div><p>Nenhum item na lista ainda.<br>Vá em 🧵 Filamento, 🧪 Resina, etc. e clique em <strong>+ Lista</strong>.</p></div>'; return; } let html = `<div class="lista-header-card"><h3>🛒 Lista de Compras</h3><p>${listaCompras.length} item${listaCompras.length > 1 ? 's' : ''} selecionado${listaCompras.length > 1 ? 's' : ''}</p></div>`; listaCompras.forEach((item, idx) => { html += `<div class="lista-item"><div class="lista-item-color" style="background:${item.color};"></div><div class="lista-item-info"><div class="lista-item-name">${item.name}</div><div class="lista-item-sub">${item.catLabel}${item.sub ? ' · ' + item.sub : ''} · Estoque: ${item.qty}${item.unit}</div></div><button class="lista-item-remove" onclick="removeFromLista(${idx})">✕</button></div>`; }); html += '<button class="btn-wpp-lista" onclick="enviarListaWhatsapp()">📲 Enviar Lista no WhatsApp</button><button class="btn-limpar-lista" onclick="limparLista()">🗑 Limpar Lista</button>'; container.innerHTML = html; }
 function enviarListaWhatsapp() { if (listaCompras.length === 0) return; let texto = '🛒 *Lista de Compras - Trivertido 3D*\n\n'; const grupos = { fil:[], res:[], pin:[], mat:[] }; listaCompras.forEach(item => grupos[item.category].push(item)); const emojis = { fil:'🧵', res:'🧪', pin:'🎨', mat:'🔧' }; const nomes = { fil:'Filamentos', res:'Resinas', pin:'Pinturas/Insumos', mat:'Materiais' }; ['fil','res','pin','mat'].forEach(cat => { if (grupos[cat].length > 0) { texto += `*${emojis[cat]} ${nomes[cat]}*\n`; grupos[cat].forEach(item => { texto += `• ${item.name}${item.sub ? ' (' + item.sub + ')' : ''} — Estoque: ${item.qty}${item.unit}\n`; }); texto += '\n'; } }); texto += '_Gerado pelo app Trivertido 3D_'; window.open(`https://wa.me/5519996054671?text=${encodeURIComponent(texto)}`, '_blank'); }
 function limparLista() { if (!confirm('Limpar toda a lista de compras?')) return; listaCompras = []; updateListaBadge(); renderLista(); document.querySelectorAll('.stock-add-lista-btn.added').forEach(btn => { btn.textContent = '+ Lista'; btn.classList.remove('added'); }); }
